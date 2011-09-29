@@ -37,11 +37,6 @@ class TestMyObject < Test::Unit::TestCase
 		assert_equal 100, @myfizzbuzobj.fizzbuzz.size
 	end
 
-	def test_three_is_fizz
-		assert_equal "Fizz", @myfizzbuzobj.fizzbuzz[3]
-		#Faire un Hash plutot qu'un Array!
-	end
-
 	def test_is_fizzbuzz
 		hfb = @myfizzbuzobj.fizzbuzz
 		for i in Range.new(1, 100)
