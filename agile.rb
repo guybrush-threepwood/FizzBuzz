@@ -1,43 +1,55 @@
 #! /usr/bin/env ruby
 require "test/unit"
 
+#	Exercice FizzBuzz :
+#	- si x/3 != 0 : Fizz
+#	- si x/5 != 0 : Buzz
+#	- si les deux : FizzBuzz
+#	- si aucun : rien
+# Et ce jusqu'à 100
+
 class FizzBuzzer
-	def get100primenumbers
-		tab = []
-		100.times do
-			tab << 2
+	def fizzbuzz
+		hfb = {}
+		for i in Range.new(1, 100)
+			result = i/3 != 0 ? "Fizz" : ""
+			result = i/5 != 0 ? result + "Buzz" : result
+			hfb.merge! i => result
 		end
-		tab[0] = 1
-		return tab
+		return hfb
 	end
 end
 
 class TestMyObject < Test::Unit::TestCase
+
+	def initialize(arg)
+		initialize_fizzbuzzer
+		super
+	end
+
 	def initialize_fizzbuzzer
 		@myfizzbuzobj = FizzBuzzer.new
 	end
 
-	def test_givesfirst100primenumbers
-		initialize_fizzbuzzer
-
-		assert_not_nil @myfizzbuzobj.get100primenumbers
-		assert_equal @myfizzbuzobj.get100primenumbers.size, 100
+	def test_gives_a_hash_of_one_hundred_pairs
+		assert_not_nil @myfizzbuzobj.fizzbuzz
+		assert_equal Hash, @myfizzbuzobj.fizzbuzz.class
+		assert_equal 100, @myfizzbuzobj.fizzbuzz.size
 	end
 
-	def test_cangiveone
-		initialize_fizzbuzzer
-
-		assert_equal @myfizzbuzobj.get100primenumbers[0], 1
-	end
-
-	def test_cangivetwo
-		initialize_fizzbuzzer
-
-		assert_equal @myfizzbuzobj.get100primenumbers[1], 2
-	end
-	
-	def test_threeisfizz
-		assert_equal "fizz!", @myfizzbuzobj.get100primenumbers[4].value
+	def test_three_is_fizz
+		assert_equal "Fizz", @myfizzbuzobj.fizzbuzz[3]
 		#Faire un Hash plutot qu'un Array!
+	end
+
+	def test_is_fizzbuzz
+		hfb = @myfizzbuzobj.fizzbuzz
+		for i in Range.new(1, 100)
+			assert_not_nil hfb[i]
+			assert_equal "Fizz", hfb[i] if i/3 != 0 and i/5 == 0
+			assert_equal "Buzz", hfb[i] if i/3 == 0 and i/5 != 0
+			assert_equal "FizzBuzz", hfb[i] if i/3 != 0 and i/5 != 0
+			assert_equal "", hfb[i] if i/3 == 0 and i/5 == 0
+		end
 	end
 end
