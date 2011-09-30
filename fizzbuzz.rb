@@ -14,8 +14,8 @@ class FizzBuzzer
 	def fizzbuzz
 		hfb = {}
 		for i in Range.new(1, 100)
-			result = (i%3).zero? == true ? "Fizz" : ""
-			result = (i%5).zero? == true ? result + "Buzz" : result
+			result = (i%3).zero? ? "Fizz" : ""
+			result = (i%5).zero? ? result + "Buzz" : result
 			hfb.merge! i => result
 		end
 		return hfb
