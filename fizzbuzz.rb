@@ -14,8 +14,8 @@ class FizzBuzzer
 	def fizzbuzz
 		hfb = {}
 		for i in Range.new(1, 100)
-			result = i/3 != 0 ? "Fizz" : ""
-			result = i/5 != 0 ? result + "Buzz" : result
+			result = (i%3).zero? == true ? "Fizz" : ""
+			result = (i%5).zero? == true ? result + "Buzz" : result
 			hfb.merge! i => result
 		end
 		return hfb
@@ -43,10 +43,10 @@ class TestMyObject < Test::Unit::TestCase
 		hfb = @myfizzbuzobj.fizzbuzz
 		for i in Range.new(1, 100)
 			assert_not_nil hfb[i]
-			assert_equal "Fizz", hfb[i] if i/3 != 0 and i/5 == 0
-			assert_equal "Buzz", hfb[i] if i/3 == 0 and i/5 != 0
-			assert_equal "FizzBuzz", hfb[i] if i/3 != 0 and i/5 != 0
-			assert_equal "", hfb[i] if i/3 == 0 and i/5 == 0
+			assert_equal "Fizz", hfb[i] if (i%3).zero? and !(i%15).zero?
+			assert_equal "Buzz", hfb[i] if (i%5).zero? and !(i%15).zero?
+			assert_equal "FizzBuzz", hfb[i] if (i%15).zero?
+			assert_equal "", hfb[i] if !(i%3).zero? and !(i%5).zero?
 		end
 	end
 end
