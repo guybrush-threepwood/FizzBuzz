@@ -1,6 +1,8 @@
 #! /usr/bin/env ruby
 require "test/unit"
 
+# Licence: WTFPLv2
+
 #	Exercice FizzBuzz :
 #	- si x/3 != 0 : Fizz
 #	- si x/5 != 0 : Buzz
