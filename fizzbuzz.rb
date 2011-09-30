@@ -4,8 +4,8 @@ require "test/unit"
 # Licence: WTFPLv2
 
 #	Exercice FizzBuzz :
-#	- si x/3 != 0 : Fizz
-#	- si x/5 != 0 : Buzz
+#	- si x divisible par 3 : Fizz
+#	- si x divisible par 5 : Buzz
 #	- si les deux : FizzBuzz
 #	- si aucun : rien
 # Et ce jusqu'à 100
