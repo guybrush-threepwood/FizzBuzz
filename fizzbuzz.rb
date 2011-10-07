@@ -14,12 +14,17 @@ class FizzBuzzer
 	def fizzbuzz
 		hfb = {}
 		for i in Range.new(1, 100)
-			result = (i%3).zero? ? "Fizz" : ""
-			result = (i%5).zero? ? result + "Buzz" : result
-			hfb.merge! i => result
+			hfb.merge! i => give_fizzbuzz(i)
 		end
 		return hfb
 	end
+
+	def give_fizzbuzz(int)
+		result = (int%3).zero? ? "Fizz" : ""
+		result = (int%5).zero? ? result + "Buzz" : result
+		return result
+	end
+
 end
 
 class TestMyObject < Test::Unit::TestCase
